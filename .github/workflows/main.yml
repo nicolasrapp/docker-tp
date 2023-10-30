@@ -27,15 +27,16 @@ jobs:
           mvn clean verify -f ./simple-api/pom.xml
 
 
-
-
   build-and-push-docker-image:
     needs: test-backend
     runs-on: ubuntu-22.04
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v2.5.0
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push backend image
         uses: docker/build-push-action@v3
@@ -44,6 +45,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/simple-api # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build and push database image
         uses: docker/build-push-action@v3
@@ -52,6 +54,8 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/database # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          push: ${{ github.ref == 'refs/heads/main' }}
+
       - name: Build and push httpd image
         uses: docker/build-push-action@v3
         with:
@@ -59,3 +63,4 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          push: ${{ github.ref == 'refs/heads/main' }}
