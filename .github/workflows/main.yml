@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./simple-api # Path to your backend code with Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/simple-api # Replace with your Docker image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/simple-api # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./database # Path to your database code with Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/database # Replace with your Docker image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/database # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./httpd # Path to your httpd code with Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops/httpd # Replace with your Docker image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           push: ${{ github.ref == 'refs/heads/main' }}
