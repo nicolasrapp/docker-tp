@@ -56,11 +56,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           push: ${{ github.ref == 'refs/heads/main' }}
 
-      - name: Build and push httpd image
+      - name: Build and push http-server image
         uses: docker/build-push-action@v3
         with:
-          context: ./httpd # Path to your httpd code with Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/httpd # Replace with your Docker image name
+          context: ./http-server # Path to your httpd code with Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/http-server # Replace with your Docker image name
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           push: ${{ github.ref == 'refs/heads/main' }}
