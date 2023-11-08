@@ -1,0 +1,10 @@
+- name: Launch Proxy Container
+  docker_container:
+    name: frontend_simple_api
+    image: nicorapp/http-server:latest
+    pull: true
+    ports:
+      - '80:80'
+    networks:
+      - name: "app-network"
+

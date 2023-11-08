@@ -1,0 +1,12 @@
+# Launch database
+- name: Launch PostgreSQL Container
+  docker_container:
+    name: my-db
+    image: nicorapp/database:latest
+    pull: true
+    env:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'pwd'
+      POSTGRES_DB: 'db'
+    networks:
+      - name: "app-network"
